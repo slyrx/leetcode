@@ -16,6 +16,8 @@ FROM  insurance<br>
 GROUP BY TIV_2015<br>
 HAVING COUNT(*) > 1<br>
 
++ 原表链接浮动表格的关键是 where x in (浮动表格)
+
 ## SQL语句
 + group by 以某个属性来分组。
 
@@ -24,6 +26,8 @@ HAVING COUNT(*) > 1<br>
 
 ## 语法
 + where count(*) >1 中的*表示什么？包括了所有的列，相当于行数，在统计结果的时候，不会忽略列值为NULL 
++ from insurance as tl 将表格名称重命名为t1之后，如果还使用原表名insurance，会报“Unknown column 'insurance.TIV_2015' in 'IN/ALL/ANY subquery'”错误。<br>
+因此在后续的时候中，需要使用别名tl。
 
 ## SQL语句的执行顺序
 (8)SELECT  (9) DISTINCT (11) <TOP_specification> <select_list><br>
