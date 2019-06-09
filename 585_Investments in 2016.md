@@ -16,13 +16,15 @@ FROM  insurance<br>
 GROUP BY TIV_2015<br>
 HAVING COUNT(*) > 1<br>
 
-+ 原表链接浮动表格的关键是 where x in (浮动表格)
++ 原表链接浮动表格的关键是 where x **in** (浮动表格)
 
 ## SQL语句
 + group by 以某个属性来分组。
++ CONCAT() CONCAT(s1,s2...sn),字符串 s1,s2 等多个字符串合并为一个字符串
 
 ## 内置函数
-+ count() 计数
++ count() 计数，count(*)括号中的*表示将所有筛选出的结果计数。
++ sum() 统计求和
 
 ## 语法
 + where count(*) >1 中的*表示什么？包括了所有的列，相当于行数，在统计结果的时候，不会忽略列值为NULL 
