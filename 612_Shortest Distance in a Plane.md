@@ -38,10 +38,7 @@
 
 
 ## 答案
-select round(min(sqrt(pow(t1.x - t2.x, 2) + pow(t1.y - t2.y, 2))), 2) as shortest
-
-from point_2d as t1
-
-inner join point_2d as t2
-
+select round(min(sqrt(pow(t1.x - t2.x, 2) + pow(t1.y - t2.y, 2))), 2) as shortest<br>
+from point_2d as t1<br>
+inner join point_2d as t2<br>
 on t1.x != t2.x or t1.y != t2.y
