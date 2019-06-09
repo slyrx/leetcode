@@ -43,3 +43,18 @@ HAVING COUNT(*) > 1<br>
 (10) ORDER BY <order_by_list>
 
 + group by 在where语句后才开始执行，因此在group by之后再增加筛选条件，需要使用关键词
+
+## 答案
+select sum(ti.TIV_2016) as TIV_2016<br>
+from insurance as ti<br>
+where ti.TIV_2015 in (<br>
+    select TIV_2015 <br>
+    from insurance<br>
+    group by TIV_2015<br>
+    having count(*) > 1<br>
+) and concat(LAT,LON) in (<br>
+    select concat(LAT,LON)<br>
+    from insurance<br>
+    group by concat(LAT,LON)<br>
+    having count(*) = 1<br>
+)
