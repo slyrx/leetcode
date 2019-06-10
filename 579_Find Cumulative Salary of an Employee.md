@@ -65,7 +65,9 @@ order by id asc, month desc
 ```
 
 ## 关键的一步是动态的算出当前表中的最大月份，再以该月份组成的表来拼接后续的表。
+```
 (select id, max(month) as month
 from Employee
 group by id
 having count(*) > 1) as maxmonth
+```
