@@ -14,3 +14,35 @@ start.next = l1 if l1 else l2
 + mergeTwoLists如何return
 + 答案是使用迭代写的
 + 是不是能用递归实现呢？
+
+
+## 答案
+```
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution(object):
+    def mergeTwoLists(self, l1, l2):
+        """
+        :type l1: ListNode
+        :type l2: ListNode
+        :rtype: ListNode
+        """
+        start = result = ListNode(0)
+        
+        while(l1 and l2):
+            if l2.val > l1.val:
+                start.next, l1 = l1, l1.next
+            else:
+                start.next, l2 = l2, l2.next
+            
+            start = start.next
+        
+        start.next = l1 if l1 else l2
+            
+        return result.next
+
+```
