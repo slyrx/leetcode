@@ -27,7 +27,19 @@ on t2.CandidateId = t3.id
 + + 使用left join 和 inner join的区别
 + + 如果空的是主表，则返回结果是[]，如果空的是副表则返回结果是[null]
 + 获得投票最多的人不再Candidate表中。
-+ + 因此需要先过滤出最高的那个人，在与Candidate表合并
++ + 因此需要先过滤出最高的那个人，再与Candidate表合并
 
 ## 答案
-
+```
+select t3.Name as Name
+from (
+select t1.CandidateId, count(*) as vote_nums
+from Vote as t1
+group by t1.CandidateId
+order by count(*) desc
+limit 1
+) as t2
+join Candidate as t3
+on t2.CandidateId = t3.id
+order by t2.vote_nums desc;
+```
