@@ -11,6 +11,7 @@
 ## 同一个表连from3次
 + from stadium t1, stadium t2, stadium t3
 + 表达的依然是笛卡尔积，只是没有on的附加条件
++ 這是比較早期的用法，相當於Table1 Join Table2。
 
 
 ## 答案
