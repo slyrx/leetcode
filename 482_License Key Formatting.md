@@ -26,7 +26,6 @@ class Solution(object):
         
         if lenstr <= 0:
             return str1
-        #l = [str1[max(i,0):i+K] for i in range(len(str1)-K, 0-K, -K)]
         l = [str1[max(i-K,0):i] for i in range(lenstr, 0, -K)]
         return "-".join(l[::-1])
         
