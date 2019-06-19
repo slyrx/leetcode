@@ -19,3 +19,9 @@ class Solution(object):
         return new_x == y
 
 ```
+
+## 答案2
++ 非转换为字符串形式
+```
+
+```
