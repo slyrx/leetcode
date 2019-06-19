@@ -5,12 +5,29 @@
 + 右对齐
 + 重新显示字符串
 
-##思路
+## 思路
 + 从后向前分割
 + 选择截取的对象
 + 截取对象重新填入到数组中
 
 ## 答案
 ```
-
+class Solution(object):
+    def licenseKeyFormatting(self, S, K):
+        """
+        :type S: str
+        :type K: int
+        :rtype: str
+        """
+        
+        str1 = S
+        str1 = str1.replace("-","").upper()
+        lenstr = len(str1)
+        
+        if lenstr <= 0:
+            return str1
+        #l = [str1[max(i,0):i+K] for i in range(len(str1)-K, 0-K, -K)]
+        l = [str1[max(i-K,0):i] for i in range(lenstr, 0, -K)]
+        return "-".join(l[::-1])
+        
 ```
