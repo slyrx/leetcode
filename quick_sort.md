@@ -2,6 +2,9 @@
 + partition
 + quick_sort
 
++ array[i],array[j] = array[j], array[i]的理解
++ + 当i和j指向相同当位置时，执行的就是array[0]和array[0]的调换，也就是自己和自己的调换，
+
 ```
 def quick_sort(nums, l, r):
     if l < r:
