@@ -19,6 +19,9 @@ SET @old_log_state = @@global.general_log; # 定义一个old_log_state的变量�
 + 中位数元素区的结尾落在有效区内，该有效区内是指过半之后再加元素本身序列长度。
 ![获取中位数的原理](./img/571_medium.png)
 
+|number|frequence|accFre|sumFre|sumFre/2|sumFre/2 + frequence|
+|---|---|---|---|---|---|
+
 ## 答案
 ```
 SELECT AVG(Number) AS median FROM (
