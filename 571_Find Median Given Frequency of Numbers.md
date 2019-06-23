@@ -28,9 +28,9 @@ SELECT AVG(Number) AS median FROM (
   SELECT Number, Frequency, AccFreq, SumFreq FROM
   (SELECT    Number,
              Frequency, @curFreq := @curFreq + Frequency AS AccFreq
-   FROM      Numbers n, (SELECT @curFreq := 0) r
+   FROM      Numbers n, (SELECT @curFreq := 0) r # 表示计算AccFreq
    ORDER BY  Number) t1,
-  (SELECT SUM(Frequency) SumFreq FROM Numbers) t2
+  (SELECT SUM(Frequency) SumFreq FROM Numbers) t2 # 表示拼接两个表
 ) t
-WHERE AccFreq BETWEEN SumFreq / 2 AND SumFreq / 2 + Frequency
+WHERE AccFreq BETWEEN SumFreq / 2 AND SumFreq / 2 + Frequency # 涉及到Median的计算原理
 ```
