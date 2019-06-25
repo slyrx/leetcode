@@ -46,6 +46,8 @@ class Solution(object):
             nums1[p1 + p2:] = nums2[p2:]
 ```
 3. 方法三
++ while中的>=0，① 0，② >= 。
++ 给较大的赋值。
 ```
 class Solution(object):
     def merge(self, nums1, m, nums2, n):
