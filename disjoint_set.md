@@ -16,3 +16,16 @@
 + find_parent
 + union
 + 主函数调用
+
+
+## 代码
+```
+def initalise():
+   parent = []
+   rank = []
+   for i in range(6):
+     parent[i] = -1
+     rank[i] = 0
+     
+   return parent, rank
+```
