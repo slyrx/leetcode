@@ -28,4 +28,11 @@ def initalise():
      rank[i] = 0
      
    return parent, rank
+   
+def find_root(x, parent):
+   x_root = x
+   while parent[x_root] != -1:
+      x_root = parent[x_root]
+   
+   return x_root
 ```
