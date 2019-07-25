@@ -54,3 +54,15 @@ def unio(x, y, parent, rank):
          rank[y_root] += 1
       return 1
 ```
+```
+if __name__ == "main":
+   for i in range(6):
+      x = edges[i][0]
+      y = edges[i][1]
+      
+      if union(x, y, parent, rank) == 0:
+         print("there is circle here!")
+         system.exit(0)
+    
+    print("there is no circle!")
+```
