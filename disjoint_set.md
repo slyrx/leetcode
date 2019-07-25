@@ -56,6 +56,10 @@ def unio(x, y, parent, rank):
 ```
 ```
 if __name__ == "main":
+   edges = [[0,1],[1,2],
+            [1,3],[2,4],
+            [3,4],[2,5]]
+   
    for i in range(6):
       x = edges[i][0]
       y = edges[i][1]
