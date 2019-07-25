@@ -11,3 +11,10 @@
 + 求和的每一位在 l3 中通过添加节点来保存结果，因此节点是添加到头节点的 next 上的。
 4. 变量可以连等赋值
 + l3_head = l3 = ListNode(0)
+5. 单链表节点的定义
+```
+class ListNode(object):
+     def __init__(self, x):
+         self.val = x
+         self.next = None
+```
