@@ -19,3 +19,5 @@ class ListNode(object):
          self.val = x
          self.next = None
 ```
+6. 在 if 语句中表达变量为 None 时，使用
++ if grid is None
