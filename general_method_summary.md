@@ -21,4 +21,6 @@ class ListNode(object):
 ```
 6. 在 if 语句中表达变量为 None 时，使用
 + if grid is None
-7. 最长边界的部分要考虑是大于还是大于等于？
+7. 最长边界的部分要考虑是大于还是大于**等于**
+8. 遍历数组时，需要习惯使用 enumerate 函数，同时取出索引和元素内容
++ for i,x in enumerate(tree):
