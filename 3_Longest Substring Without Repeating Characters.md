@@ -22,3 +22,24 @@ start = max(start, board\[x]+1)
 + + 前半段长度比后半段长度大的情况
 + + 前半段长度比后半段长度小的情况
 
+## 答案
+```
+class Solution(object):
+    def lengthOfLongestSubstring(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        start = 0
+        board = {}
+        temp_len = 0
+        
+        for i, x in enumerate(s):
+            if x in board:
+                temp_len = max(temp_len, i-start)
+                start = max(start, board[x]+1)
+                
+            board[x] = i
+            
+        return max(temp_len, len(s)-start)
+```
