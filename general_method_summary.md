@@ -28,3 +28,7 @@ class ListNode(object):
 + 设一个 start 指针，用遍历数组的指针 i 执行 i-start
 10. 遇到相同元素，更新元素索引位置的方法
 + 建立一个字典 board 记录不同元素的索引位置；当再次遇到该元素时，提出原来的索引位置用来更新 start 指针，同时将元素的最新索引位置更新到 board 中。
+11. 表达非的含义时，使用 not 。
++ if not head:
++ 需要返回的时候，指明返回 None 。
++ return None
