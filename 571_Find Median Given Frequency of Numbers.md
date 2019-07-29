@@ -17,6 +17,10 @@ SET @old_log_state = @@global.general_log; # 定义一个old_log_state的变量�
 ```
 + 不怕浪费空间，新元素每个位置都复制一份在表的后面
 + 中位数元素区的结尾落在有效区内，该有效区内是指过半之后再加元素本身序列长度。
+![获取中位数的原理](./img/571_medium.png)
+
+|number|frequence|accFre|sumFre|sumFre/2|sumFre/2 + frequence|
+|---|---|---|---|---|---|
 
 ## 答案
 ```
@@ -24,9 +28,9 @@ SELECT AVG(Number) AS median FROM (
   SELECT Number, Frequency, AccFreq, SumFreq FROM
   (SELECT    Number,
              Frequency, @curFreq := @curFreq + Frequency AS AccFreq
-   FROM      Numbers n, (SELECT @curFreq := 0) r
+   FROM      Numbers n, (SELECT @curFreq := 0) r # 表示计算AccFreq
    ORDER BY  Number) t1,
-  (SELECT SUM(Frequency) SumFreq FROM Numbers) t2
+  (SELECT SUM(Frequency) SumFreq FROM Numbers) t2 # 表示拼接两个表
 ) t
-WHERE AccFreq BETWEEN SumFreq / 2 AND SumFreq / 2 + Frequency
+WHERE AccFreq BETWEEN SumFreq / 2 AND SumFreq / 2 + Frequency # 涉及到Median的计算原理
 ```
