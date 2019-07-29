@@ -19,3 +19,51 @@
 + 因为前面已经对节点进行过复制，因此，在更新随机指针信息的时候，p.next.next 也会存在。
 
 ## 答案
+```
+"""
+# Definition for a Node.
+class Node(object):
+    def __init__(self, val, next, random):
+        self.val = val
+        self.next = next
+        self.random = random
+"""
+class Solution(object):
+    def copyRandomList(self, head):
+        """
+        :type head: Node
+        :rtype: Node
+        """
+        
+        if not head:
+            return None
+        
+        p = head
+        while p:
+            node = Node(p.val, p.next, None)
+            p.next = node
+            p = p.next.next
+            
+        p = head
+        while p:
+            if p.random:
+                p.next.random = p.random.next
+            p = p.next.next
+                
+        pold = head
+        pnew = head.next
+        presult = pnew
+        
+        while pnew:
+            pold.next = pnew.next
+            pold = pold.next
+            
+            if pold:
+                pnew.next = pold.next
+                pnew = pnew.next
+            else:
+                pnew = pnew.next
+                
+        return presult
+                
+```
