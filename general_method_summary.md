@@ -32,3 +32,6 @@ class ListNode(object):
 + if not head:
 + 需要返回的时候，指明返回 None 。
 + return None
+12. 可以将3个排序再进入新数组的语句合并成一个语句
++ sorted(\[i\[0] for i in intervals])
+13. 使用指针的方式来避免逐个遍历的问题。
