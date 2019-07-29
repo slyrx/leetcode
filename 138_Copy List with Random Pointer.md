@@ -8,7 +8,7 @@
 + 将复制元素与原元素断开
 
 ## 可能存在的几种情况
-+ 普通情况
++ 普通情况<br>
 ![](https://discuss.leetcode.com/uploads/files/1470150906153-2yxeznm.png)
 + 只有一个节点的情况
 ```
