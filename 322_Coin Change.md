@@ -6,10 +6,15 @@
 + 在比较每个和与缺一份面值的差异时，要对缺一份面值的结果默认都加1。这个加1暂时无法解释，但就是有这种规律.
 对于加1的解释
 + 因为 dp\[i-c] 正好减去的是一个面值，所以相当于少了一种方式，因此通过加1的方式加上。这里表示对面值的中和。
++ 对 hash 表的填充是从1开始记的，而不是从0开始。
++ 和比面值还小的情况可以不用考虑了
 
 ## 涉及的情况
 对 hash 表的处理
+
+dp\[0] 是多余出来不做处理的。逻辑意义表示为没有数量，也就没有面值可以满足。
 + 初始化
+
 |dp\[0]|dp\[1]|dp\[2]|dp\[3]|dp\[4]|dp\[5]|dp\[6]|dp\[7]|dp\[8]|dp\[9]|dp\[10]|dp\[11]|
 |---|---|---|---|---|---|---|---|---|---|---|---|
 |0|12|12|12|12|12|12|12|12|12|12|12|
@@ -24,4 +29,29 @@
 if dp[amount] == (amount+1):
     return -1
 ```
+因为，dp\[每一个值] 的初始化为 (amount + 1)， 所以当处理结束后，dp 对应的值还是 (amount+1)， 那么说明表示单位面值的元素没有对 target 造成改变，所以没有达到要求，因此返回-1.
+
 ## 答案
+```
+class Solution(object):
+    def coinChange(self, coins, amount):
+        """
+        :type coins: List[int]
+        :type amount: int
+        :rtype: int
+        """
+        
+        dp = [amount+1] * (amount + 1)
+        dp[0] = 0
+        
+        for i in range(1, amount+1):
+            for c in coins:
+                if i>=c:
+                    dp[i] = min(dp[i], dp[i-c] + 1)
+                
+                
+        if dp[amount] == (amount + 1):
+            return -1
+        
+        return dp[amount]
+```
