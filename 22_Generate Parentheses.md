@@ -9,3 +9,26 @@
 就是遍历
 
 ## 答案
+```
+class Solution(object):
+    def generateParenthesis(self, n):
+        """
+        :type n: int
+        :rtype: List[str]
+        """
+        
+        def helper(curr, res, left, right):
+            if len(curr) == 2*n:
+                res.append(curr)
+                return
+            
+            if left < n:
+                helper(curr+"(", res, left+1, right)
+            
+            if right < left:
+                helper(curr+")", res, left, right+1)
+        
+        res = []
+        helper("", res, 0, 0)
+        return res
+```
