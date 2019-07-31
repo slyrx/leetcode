@@ -19,3 +19,36 @@
 2. 空的组合
 
 ## 答案
+```
+class Solution(object):
+    def letterCombinations(self, digits):
+        """
+        :type digits: str
+        :rtype: List[str]
+        """
+        
+        phone = {
+            "1":"",
+            "2":"abc",
+            "3":"def",
+            "4":"ghi",
+            "5":"jkl",
+            "6":"mno",
+            "7":"pqrs",
+            "8":"tuv",
+            "9":"wxyz"
+        }
+        
+        def helper(combination, next_digits):
+            if len(next_digits) == 0:
+                output.append(combination)
+                return
+            else:
+                for letter in phone[next_digits[0]]:
+                    helper(combination + letter, next_digits[1:])
+        
+        output = []
+        if digits:
+            helper("", digits)
+        return output
+```
