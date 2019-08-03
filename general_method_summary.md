@@ -37,3 +37,4 @@ class ListNode(object):
 + sorted(\[i\[0] for i in intervals])
 13. 使用指针的方式来避免逐个遍历的问题。
 14. 函数内的定义函数放在函数的开头，否则报错
+15. python 的 True 和 False 必须是大写开头的
