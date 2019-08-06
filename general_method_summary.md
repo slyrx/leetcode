@@ -22,6 +22,7 @@ class ListNode(object):
 6. 在 if 语句中表达变量为 None 时，使用
 + if grid is None
 7. 最长边界的部分要考虑是大于还是大于**等于**
++ 这是说哪个题？
 8. 遍历数组时，需要习惯使用 enumerate 函数，同时取出索引和元素内容
 + for i,x in enumerate(tree):
 9. 计算子数组长度的方法
@@ -35,3 +36,5 @@ class ListNode(object):
 12. 可以将3个排序再进入新数组的语句合并成一个语句
 + sorted(\[i\[0] for i in intervals])
 13. 使用指针的方式来避免逐个遍历的问题。
+14. 函数内的定义函数放在函数的开头，否则报错
+15. python 的 True 和 False 必须是大写开头的
