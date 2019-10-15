@@ -7,6 +7,16 @@
 2. left == right, 从顶到底的竖条
 3. top == bottom && left == right, 最后只剩一个元素
 
+python 技术技巧
+1. matrix.pop(0)
++ 弹出首元素
+2. matrix.pop()
++ 弹出最后的元素
+3. matrix.pop()[::-1]
++ 分两部执行
++ + 弹出最后的元素
++ + 对弹出的元素执行倒置
+
 ## 涉及的情况
 ![涉及的情况](./img/54_spiral_matrix.png)
 ## 答案
