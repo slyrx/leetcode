@@ -29,5 +29,36 @@ This means each integer represents only 1 byte of data.
 
 
 ## 涉及的情况
+只有一种情况，就是一遍遍历同时作出两个判断。这两个判断是可以并行的。
 
 ## 答案
+```
+class Solution(object):
+    def validUtf8(self, data):
+        """
+        :type data: List[int]
+        :rtype: bool
+        """
+        cnt = 0
+        
+        for byte in data:
+            if cnt == 0:
+                if byte>>5 == 0b110:
+                    cnt = 1
+                elif byte>>4 == 0b1110:
+                    cnt = 2
+                elif byte>>3 == 0b11110:
+                    cnt = 3
+                elif byte>>7 != 0:
+                    return False
+            else:
+                if byte>>6 == 0b10:
+                    cnt -= 1
+                else:
+                    return False
+                
+        if cnt == 0:
+            return True
+        else:
+            return False
+```
