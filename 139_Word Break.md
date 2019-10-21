@@ -1,4 +1,9 @@
 ## 思路
+题目：一个字符串，一个子串字典，判断字符串可否被字典中的词分成多段？
+解决的思路就是：使用一个专门的字符串数组记录每一位的情况，来判断每一段是否成功。
++ 关键之一是首位置0要被设置为 True，其他位置设置为 False。
++ 前面子段内容全为True，最后位置的结果才能为 True。
++ 一个子段检查完毕了，跳出字典当前循环，重新开始新一段的检查。
 
 ## 关键
 1. 记录字符串数组每一位情况的数组，设置容量时要多设置出 1 位
@@ -11,3 +16,24 @@
 ## 涉及的情况
 
 ## 答案
+```
+class Solution(object):
+    def wordBreak(self, s, wordDict):
+        """
+        :type s: str
+        :type wordDict: List[str]
+        :rtype: bool
+        """
+        
+        dp = [False] * (len(s) + 1)
+        dp[0] = True
+        
+        for i in range(1, len(s)+1):
+            for w in wordDict:
+                if s[i-len(w):i] == w:
+                    dp[i] = dp[i] or dp[i-len(w)]
+                    if dp[i]:
+                        break
+                        
+        return dp[len(s)]
+```
