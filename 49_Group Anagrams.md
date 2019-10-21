@@ -9,8 +9,23 @@ anagrams 同字母异序词
 2. 快速的返回字典对应 values 值的方法是 dict.values()
 
 ## 涉及情况
+不涉及边界情况
 
 ## 答案
-
+```
+class Solution(object):
+    def groupAnagrams(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: List[List[str]]
+        """
+        
+        dd = collections.defaultdict(list)
+        
+        for s in strs:
+            dd[tuple(sorted(s))].append(s)
+            
+        return dd.values()
+```
 
 
