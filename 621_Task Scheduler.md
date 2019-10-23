@@ -5,6 +5,8 @@
 
 ## 关键
 + 有 idle 时的矩阵
++ 计算方法：（m -1）\*（n+1）+ l
++ m 的 -1 正代表了 l， n 后面的 +1 代表了包括间隔的长度。
 + 无 idle 的自己
 
 ## 涉及的情况
@@ -14,3 +16,22 @@
 + 特殊情况：如果总数是大于加 idle 的情况的，那么，就认为肯定能按照间隔分配开。
 
 ## 答案
+```
+class Solution(object):
+    def leastInterval(self, tasks, n):
+        """
+        :type tasks: List[str]
+        :type n: int
+        :rtype: int
+        """
+        
+        dic = collections.defaultdict(int)
+        
+        for i in tasks:
+            dic[i] += 1
+            
+        m = max(dic.itervalues())
+        l = len([k for k in dic if dic[k] == m])
+        
+        return max(len(tasks), ((m-1)*(n+1)+l))
+```
