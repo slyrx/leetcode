@@ -173,3 +173,43 @@ class LRUCache(object):
 # param_1 = obj.get(key)
 # obj.put(key,value)
 ```
+
+```
+class LRUCache(object):
+
+    def __init__(self, capacity):
+        """
+        :type capacity: int
+        """
+        self.capacity = capacity
+        self.map = {}
+        self.recent = deque()
+        
+
+    def get(self, key):
+        """
+        :type key: int
+        :rtype: int
+        """
+        if key in self.map:
+            self.recent.remove(key)
+            self.recent.append(key)
+            return self.map[key]
+        return -1
+        
+
+    def put(self, key, value):
+        if key in self.map:
+            self.recent.remove(key)
+            self.recent.append(key)
+            self.map[key] = value
+        else:
+            if len(self.map) >= self.capacity:
+                leastUsed = self.recent.popleft()
+                del self.map[leastUsed]
+                self.map[key] = value
+                self.recent.append(key)
+            else:
+                self.map[key] = value
+                self.recent.append(key)
+```
