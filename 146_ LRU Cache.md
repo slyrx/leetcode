@@ -49,3 +49,55 @@ class LRUCache(object):
 # param_1 = obj.get(key)
 # obj.put(key,value)
 ```
+
+
+```
+class LRUCache(object):
+
+    def __init__(self, capacity):
+        """
+        :type capacity: int
+        """
+        self.capacity = capacity
+        self.lrudict = {}
+        self.lrulist = []
+
+    def get(self, key):
+        """
+        :type key: int
+        :rtype: int
+        """
+        if key in self.lrudict:
+            self.lrulist.remove(key)
+            self.lrulist.insert(0,key)
+            return self.lrudict[key]
+        else:
+            return -1
+
+    def put(self, key, value):
+        """
+        :type key: int
+        :type value: int
+        :rtype: None
+        """   
+        if key in self.lrudict:
+            self.lrudict[key] = value
+            self.lrulist.remove(key)
+            self.lrulist.insert(0,key)
+        elif len(self.lrudict) == self.capacity:
+            rmKey = self.lrulist.pop(-1)
+            del self.lrudict[rmKey]
+            self.lrudict[key] = value
+            self.lrulist.insert(0,key)
+        else:
+            self.lrudict[key] = value
+            self.lrulist.insert(0,key)
+        
+        
+
+
+# Your LRUCache object will be instantiated and called as such:
+# obj = LRUCache(capacity)
+# param_1 = obj.get(key)
+# obj.put(key,value)
+```
