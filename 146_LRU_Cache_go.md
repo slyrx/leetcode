@@ -43,10 +43,10 @@ type LRUCache struct {
   tail       *Node
 }
 
-func Construct(capacity int) LRUCache {
+func Constructor(capacity int) LRUCache {
   cache := LRUCache{
      capacity: capacity,
-     size: capacity,
+     size: 0,
      cache: make(map[int]*Node, 0),
      head: &Node{},
      tail: &Node{},
@@ -57,7 +57,7 @@ func Construct(capacity int) LRUCache {
   return cache
 }
 
-func (this *LRUCache) get(key int) int {
+func (this *LRUCache) Get(key int) int {
   if node, ok := this.cache[key]; ok {
       this.moveToTail(node)
       return node.value
@@ -65,18 +65,18 @@ func (this *LRUCache) get(key int) int {
   return -1
 }
 
-func (this *LRUCache) put(key, val int) {
+func (this *LRUCache) Put(key, val int) {
   if node, ok := this.cache[key]; ok {
       node.value = val
-      this.moveToTail(key)
+      this.moveToTail(node)
   } else {
       newNode := &Node{key:key, value:val}
-      cache[key] = newNode
-      this.addToTail(key)
+      this.cache[key] = newNode
+      this.addToTail(newNode)
       this.size++
       if this.size > this.capacity {
          removeNode := this.removeFromHead()
-         delete(this.cache, removeNode)
+         delete(this.cache, removeNode.key)
          this.size--
       }
   }
@@ -101,7 +101,7 @@ func (this *LRUCache) addToTail(node *Node) {
 }
 
 func (this *LRUCache) removeFromHead() *Node {
-    node = this.head.next
+    node := this.head.next
     this.removeFromList(node)
     return node
 }
