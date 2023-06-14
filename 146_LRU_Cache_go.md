@@ -27,6 +27,86 @@ key 和 value 的关系：其实两者没有必然联系，可以不一样，只
 
 
 # 实现代码
+```golang
+type Node struct {
+  key    int
+  value  int
+  prev   *Node
+  next   *Node
+}
+
+type LRUCache struct {
+  capacity   int
+  size       int
+  cache      map[int]*Node
+  head       *Node
+  tail       *Node
+}
+
+func Construct(capacity int) LRUCache {
+  cache := LRUCache{
+     capacity: capacity,
+     size: capacity,
+     cache: make(map[int]*Node, 0),
+     head: &Node{},
+     tail: &Node{},
+  }
+  cache.head.next = cache.tail
+  cache.tail.prev = cache.head
+  
+  return cache
+}
+
+func (this *LRUCache) get(key int) int {
+  if node, ok := this.cache[key]; ok {
+      this.moveToTail(node)
+      return node.value
+  }
+  return -1
+}
+
+func (this *LRUCache) put(key, val int) {
+  if node, ok := this.cache[key]; ok {
+      node.value = val
+      this.moveToTail(key)
+  } else {
+      newNode := &Node{key:key, value:val}
+      cache[key] = newNode
+      this.addToTail(key)
+      this.size++
+      if this.size > this.capacity {
+         removeNode := this.removeFromHead()
+         delete(this.cache, removeNode)
+         this.size--
+      }
+  }
+}
+
+func (this *LRUCache) moveToTail(node *Node) {
+    this.removeFromList(node)
+    this.addToTail(node)
+}
+
+func (this *LRUCache) removeFromList(node *Node) {
+    node.prev.next = node.next
+    node.next.prev = node.prev
+    
+}
+
+func (this *LRUCache) addToTail(node *Node) {
+    this.tail.prev.next = node
+    node.prev = this.tail.prev
+    node.next = this.tail
+    this.tail.prev = node
+}
+
+func (this *LRUCache) removeFromHead() *Node {
+    node = this.head.next
+    this.removeFromList(node)
+    return node
+}
+
+```
 
 # 时间复杂度
 get 和 put 的操作，时间复杂度都是 O(1)
