@@ -108,6 +108,62 @@ func (this *LRUCache) removeFromHead() *Node {
 
 ```
 
+```golang
+type LRUCache struct {
+    capacity  int
+    cache     map[int]*list.Element
+    lruList   *list.List
+}
+
+type cacheItem struct {
+    key    int
+    value  int
+}
+
+func Constructor(capacity int) LRUCache {
+    return LRUCache{
+        capacity: capacity,
+        cache: make(map[int]*list.Element),
+        lruList: list.New(),
+    }
+}
+
+
+func (this *LRUCache) Get(key int) int {
+    if elem, ok := this.cache[key]; ok {
+        this.lruList.MoveToFront(elem)
+        return elem.Value.(*cacheItem).value
+    }
+    return -1
+}
+
+
+func (this *LRUCache) Put(key int, value int)  {
+    if elem, ok := this.cache[key]; ok {
+        elem.Value.(*cacheItem).value = value
+        this.lruList.MoveToFront(elem)
+    } else {
+        if this.lruList.Len() == this.capacity {
+            lastElem := this.lruList.Back()
+            delete(this.cache, lastElem.Value.(*cacheItem).key)
+            this.lruList.Remove(lastElem)
+        }
+        newItem := &cacheItem{key:key, value:value}
+        newElem := this.lruList.PushFront(newItem)
+        this.cache[key] = newElem
+    }
+}
+
+
+/**
+ * Your LRUCache object will be instantiated and called as such:
+ * obj := Constructor(capacity);
+ * param_1 := obj.Get(key);
+ * obj.Put(key,value);
+ */
+
+```
+
 # 时间复杂度
 get 和 put 的操作，时间复杂度都是 O(1)
 
