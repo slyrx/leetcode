@@ -11,6 +11,13 @@ end 和 start 是回文子串的索引位置，因此它们之间的距离需要
 为什么 start 的计算是 length - 1， 而 end 的计算是 length ?
 
 
+```golang
+
+  c <---b---> b d
+        length 排除的就是自己
+
+```
+
 
 # 实现代码
 
