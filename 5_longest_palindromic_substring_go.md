@@ -23,7 +23,7 @@ right - left - 1，在数组中，要把左边的开始节点囊括进来就是�
 
 # 实现代码
 
-```python
+```golang
 
 import "math"
 
