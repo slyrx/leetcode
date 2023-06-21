@@ -19,7 +19,7 @@ func backtrack(candidates []int, target, start int, curComb []int, res *[][]int)
 		return
 	}
 
-	for i := start; i < len(candidates); i++ {
+	for i := start; i < len(candidates); i++ { // 把 i 再次传入了回溯函数，就说明了可以重复使用备选元素
 		if target-candidates[i] >= 0 { // 当目标数减去当前元素仍大于等于0时，可以继续加入当前元素
 			curComb = append(curComb, candidates[i]) // 将当前元素加入当前组合
 			backtrack(candidates, target-candidates[i], i, curComb, res) // 递归调用回溯函数
