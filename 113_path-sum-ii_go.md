@@ -7,7 +7,6 @@
 
 func pathSum(root *TreeNode, targetSum int) [][]int {
 	var result [][]int       // 存储结果的二维数组
-	var path []int           // 存储当前路径的数组
 	backtrack(root, targetSum, []int{}, &result)
 	return result
 }
@@ -40,5 +39,6 @@ func backtrack(node *TreeNode, targetSum int, path []int, result *[][]int) {
 ```
 
 # 时间复杂度
-
+O(N^2)，其中 N 是二叉树的节点数。在最坏情况下，需要遍历每个节点，并且每个节点都可能在路径中。
 # 空间复杂度
+O(N)
