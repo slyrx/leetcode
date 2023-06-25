@@ -53,5 +53,7 @@ func backtrack(nums []int, start int, subset []int, subsets *[][]int) {
 ```
 
 # 时间复杂度
-
+O(2^n * n)，其中 n 是数组的长度。生成所有子集的时间复杂度为 O(2^n)，每个子集的平均长度为 O(n)，因此总时间复杂度为 O(2^n * n)。
 # 空间复杂度
+O(n)，除了存储结果的二维数组外，递归栈的深度最多为 n。
+
