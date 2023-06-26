@@ -7,6 +7,8 @@
 关键是要排序
 主要是没有搞懂回溯的路径，搞懂了就知道为什么要做相同元素过滤了，通过打 log 的方式，明确了回溯的路径，因为是从右向左遍历的，所以会添加相同的元素。
 
+在解法的最尾部加上 log，return 之前。
+
 ```golang
 Choose: 1 Subset: [1]
 Choose: 2 Subset: [1 2]
@@ -46,6 +48,8 @@ func backtrack(nums []int, start int, subset []int, subsets *[][]int) {
 		fmt.Println("Unchoose:", nums[i], "Subset:", subset) // 打印撤销选择的元素和当前子集
 		subset = subset[:len(subset)-1] // 将当前元素从当前子集中移除，继续遍历下一个元素
 	}
+
+	fmt.Println("end backtrack")
 }
 
 
