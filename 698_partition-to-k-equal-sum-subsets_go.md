@@ -43,10 +43,10 @@ func canPartitionKSubsets(nums []int, k int) bool {
     var dfs func(i int)
     dfs = func(i int) {
         // Base case: all elements have been assigned to subsets
-        if i < 0 {
-            ans = true
-            return
-        }
+        if i < 0 {  // 结束条件
+            ans = true // 结束条件
+            return // 结束条件
+        } // 结束条件
 
         lessCnt := 0  // 剪枝
         for _, v := range arr { // 剪枝
