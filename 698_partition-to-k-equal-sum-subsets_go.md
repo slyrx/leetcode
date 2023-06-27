@@ -10,6 +10,14 @@
 
 回溯的关键是回退和剪枝的操作。
 
+```golang
+
+if j > 0 && v == arr[j-1] {
+                continue
+            }
+，这段代码的目的是什么？
+```
+
 # 实现代码
 ```golang
 func canPartitionKSubsets(nums []int, k int) bool {
