@@ -42,26 +42,22 @@ func canPartitionKSubsets(nums []int, k int) bool {
     // Define the DFS function to perform backtracking
     var dfs func(i int)
     dfs = func(i int) {
-        // if ans {
-        //     return
-        // }
-
         // Base case: all elements have been assigned to subsets
         if i < 0 {
             ans = true
             return
         }
 
-        lessCnt := 0
-        for _, v := range arr {
-            if v < avg {
-                lessCnt++
-            }
-        }
+        lessCnt := 0  // 剪枝
+        for _, v := range arr { // 剪枝
+            if v < avg {  // 剪枝
+                lessCnt++ // 剪枝
+            } // 剪枝
+        } // 剪枝
         // Optimization: check if there are more subsets with sums less than avg than the remaining unassigned elements
-        if lessCnt > i+1 {
-            return
-        }
+        if lessCnt > i+1 { // 剪枝
+            return // 剪枝
+        } // 剪枝
 
         // Try assigning the current element to different subsets
         for j, v := range arr {
