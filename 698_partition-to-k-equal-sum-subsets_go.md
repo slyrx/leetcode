@@ -21,17 +21,14 @@ if j > 0 && v == arr[j-1] {
 
 # 实现代码
 ```golang
+
 func canPartitionKSubsets(nums []int, k int) bool {
     sum := 0
-    mx := nums[0]
     n := len(nums)
 
     // Calculate the sum of all elements in nums and find the maximum element
     for _, nu := range nums {
         sum += nu
-        if nu > mx {
-            mx = nu
-        }
     }
 
     // If the sum is not divisible by k, it is not possible to partition into equal subsets
@@ -51,22 +48,26 @@ func canPartitionKSubsets(nums []int, k int) bool {
     // Define the DFS function to perform backtracking
     var dfs func(i int)
     dfs = func(i int) {
-        // Base case: all elements have been assigned to subsets
-        if i < 0 {  // 结束条件
-            ans = true // 结束条件
-            return // 结束条件
-        } // 结束条件
+        if ans {
+            return
+        }
 
-        lessCnt := 0  // 剪枝
-        for _, v := range arr { // 剪枝
-            if v < avg {  // 剪枝
-                lessCnt++ // 剪枝
-            } // 剪枝
-        } // 剪枝
+        // Base case: all elements have been assigned to subsets
+        if i < 0 {
+            ans = true
+            return
+        }
+
+        lessCnt := 0
+        for _, v := range arr {
+            if v < avg {
+                lessCnt++
+            }
+        }
         // Optimization: check if there are more subsets with sums less than avg than the remaining unassigned elements
-        if lessCnt > i+1 { // 剪枝
-            return // 剪枝
-        } // 剪枝
+        if lessCnt > i+1 {
+            return
+        }
 
         // Try assigning the current element to different subsets
         for j, v := range arr {
@@ -95,5 +96,7 @@ func canPartitionKSubsets(nums []int, k int) bool {
 ```
 
 # 时间复杂度
-
+O(k * 2^n), 其中 n 是 nums 数组的长度。
 # 空间复杂度
+O(k)，主要是由创建的长度为 k 的数组 arr 所占用的空间。
+
