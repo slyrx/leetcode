@@ -47,6 +47,52 @@ func dfs(node *TreeNode, level int, result *[]int) {
 
 ```
 
+
+```golang
+type TreeNode struct {
+	Val   int
+	Left  *TreeNode
+	Right *TreeNode
+}
+
+func rightSideView(root *TreeNode) []int {
+	if root == nil {
+		return []int{}
+	}
+
+	result := []int{}
+	queue := []*TreeNode{root}
+
+	for len(queue) > 0 {
+		size := len(queue)
+
+		 // 遍历当前层的节点
+		for i := 0; i < size; i++ {
+			node := queue[i]
+			if i == size-1 {
+				// 如果是当前层的最右边节点，将其值加入结果列表
+				result = append(result, node.Val)
+			}
+
+			// 将下一层的节点加入队列
+			if node.Left != nil {
+				queue = append(queue, node.Left)
+			}
+			if node.Right != nil {
+				queue = append(queue, node.Right)
+			}
+		}
+
+		// 移除当前层的节点
+		queue = queue[size:]
+	}
+
+	return result
+}
+
+
+```
+
 # 时间复杂度
 O(N)，其中 N 是二叉树中的节点数。需要遍历所有节点。
 # 空间复杂度
