@@ -6,44 +6,38 @@
 # 实现代码
 ```golang
 func verifyPostorder(postorder []int) bool {
-    // Base case: an empty array is a valid postorder traversal
     if len(postorder) == 0 {
         return true
     }
-    
-    // The last element in the postorder array is the root node
-    root := postorder[len(postorder)-1]
-    
-    // Find the index 'i' where the right subtree starts
+
+    root := postorder[len(postorder) - 1] // 分节点
+
     i := 0
-    for ; i < len(postorder)-1; i++ {
+    for ; i<len(postorder)-1; i++ {
         if postorder[i] > root {
             break
         }
-    }
-    
-    // Check if all elements in the right subtree are greater than the root
+    } // 分割左子树
+
     j := i
     for ; j < len(postorder)-1; j++ {
         if postorder[j] < root {
             return false
         }
-    }
-    
-    // Recursively check the validity of the left and right subtrees
+    } // 分割右子树，并对右子树的元素进行校验，如果小于根节点则提前判断退出
+
     left := true
     if i > 0 {
         left = verifyPostorder(postorder[:i])
-    }
+    } // 递归左子树
+
     right := true
     if i < len(postorder)-1 {
-        right = verifyPostorder(postorder[i : len(postorder)-1])
-    }
-    
-    // Return true if both left and right subtrees are valid
+        right = verifyPostorder(postorder[i:len(postorder)-1])
+    } // 递归右子树
+
     return left && right
 }
-
 
 ```
 
